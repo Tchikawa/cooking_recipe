@@ -1,8 +1,11 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,11 +13,16 @@ import javax.persistence.Table;
 public class Recipe {
 	@Id
 	@Column(name = "id")
-	private Long id;
+	private int id;
+
 	@Column(name = "title")
 	private String title;
+
 	@Column(name = "description")
 	private String description;
+
+	@OneToMany(mappedBy = "recipe")
+	private List<Step> stepList;
 
 	public String getTitle() {
 		return title;
@@ -32,12 +40,20 @@ public class Recipe {
 		this.description = description;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<Step> getStepList() {
+		return stepList;
+	}
+
+	public void setStepList(List<Step> stepList) {
+		this.stepList = stepList;
 	}
 
 }

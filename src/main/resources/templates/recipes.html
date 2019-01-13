@@ -5,10 +5,19 @@
 <title>レシピ一覧</title>
 </head>
 <body>
+	<form method="post">
+		<input type="text" name="serchWord" th:value="${servhWord}" /> <input
+			type="submit" value="SEARCH" />
+	</form>
+	<br />
+	<div th:if="${resultSize > 0}">
+		<label th:text="${resultSize}"></label>件
+	</div>
 	<tbody>
 		<tr th:each="recipe:${recipeList}">
-			<td th:text="${recipe.id}" />
+			<a href="detail" th:href="@{detail(id=${recipe.id})}">
 			<td th:text="${recipe.title}" />
+			</a>
 			<td th:text="${recipe.description}" />
 		</tr>
 	</tbody>
